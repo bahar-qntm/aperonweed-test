@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+-->
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="description" content="WebRTC code samples">
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+    <meta itemprop="description" content="Client-side WebRTC code samples">
+    <meta itemprop="image" content="static/Favicon-Q.jpg">
+    <meta itemprop="name" content="WebRTC code samples">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta id="theme-color" name="theme-color" content="#ffffff">
+
+    <base target="_blank">
+
+    <title>Aperon - Qntm Ventures</title>
+
+    <link rel="icon" sizes="192x192" href="/static/Favicon-Q.jpg">
+    <link rel="stylesheet" href="css/main.css">
+
+    <style>
+        div.select {
+            display: inline-block;
+            margin: 0 0 1em 0;
+        }
+
+        p.small {
+            font-size: 0.7em;
+        }
+
+        label {
+            width: 12em;
+            display: inline-block;
+        }
+    </style>
+
+</head>
+
+<body>
+<div id="container">
+    <video id="video" playsinline autoplay></video>
+    <table style="width:100%">
+        <tr>
+            <td> <p id="probability" style="text-align:center;font-size:large"><b>Take picture of a leaf...</b></p> </td>
+        </tr>
+    </table>
+    <table style="width:100%">
+            <td id="result1" style="text-align:center"> </td>
+            <td id="result2" style="text-align:center"> </td>
+            <tr>
+                <td id="result3" style="text-align:center"> </td>
+                <td id="result4" style="text-align:center"> </td>
+                <td id="result5" style="text-align:center"> </td>
+            </tr>
+    </table>
+    <table style="width:100%">
+        <tr>
+            <td>
+                <div class="select" style="margin-bottom:-7px">
+                <table style="width:100%">
+                    <tr>
+                        <td > <select id="videoSource"></select> </td>       
+                    </tr>
+                </table>
+                </div>
+            </td>
+            <td style="text-align:center"> <button id="snapshot">  Click!  </button> </td>
+        </tr>
+    </table>
+
+    <p style="text-align:center"><b>Note:</b> This demo is the property of Qntm Ventures, LLC.</p>
+
+    <canvas hidden id="canvas">
+        <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box.">
+        </div>
+    </canvas>
+
+</div>
+
+<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+<script src="js/main.js" async></script>
+
+<script src="../../../js/lib/ga.js"></script>
+</body>
+</html>
