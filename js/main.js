@@ -87,16 +87,16 @@ snapshotButton.onclick = function() {
   canvas.height = videoElement.videoHeight;
   canvas.getContext('2d').drawImage(videoElement, 0, 0, canvas.width, canvas.height);
 
-  //var url = "https://aperonncus-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/1fc5c98b-7c0d-4fd3-b41f-4356f78310c9/classify/iterations/Iteration1/image"
-  var url = "https://qntm-apim.azure-api.net/KnowYourWeed/classify"
+  var url = "https://aperonncus-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/1fc5c98b-7c0d-4fd3-b41f-4356f78310c9/classify/iterations/Iteration1/image"
+  //var url = "https://qntm-apim.azure-api.net/KnowYourWeed/classify"
   //var url = "https://qntm-apim.azure-api.net/KnowYourWeed-Backup/classify"
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url);
 
-  //xhr.setRequestHeader("Prediction-Key", "8b70c86275ae4765902cdc5a25e84435");
-  //xhr.setRequestHeader("Content-Type", "application/octet-stream");
-  xhr.setRequestHeader("Ocp-Apim-Subscription-Key", "39ee06e8c47940f78abb8fee0036796a");
-  xhr.setRequestHeader("Content-Type", "multipart/form-data");
+  xhr.setRequestHeader("Prediction-Key", "8b70c86275ae4765902cdc5a25e84435");
+  xhr.setRequestHeader("Content-Type", "application/octet-stream");
+  //xhr.setRequestHeader("Ocp-Apim-Subscription-Key", "39ee06e8c47940f78abb8fee0036796a");
+  //xhr.setRequestHeader("Content-Type", "multipart/form-data");
   //xhr.setRequestHeader("Content-Length", "0");
 
   xhr.onreadystatechange = function () {
@@ -112,9 +112,7 @@ snapshotButton.onclick = function() {
   document.getElementById("result4").innerHTML = " ";
   document.getElementById("result5").innerHTML = " ";
   
-  document.getElementById("probability").innerHTML = '<b>Probability</b>';
-
-
+ 
   const sendBlob = createBlob(canvas.toDataURL());
   xhr.send(sendBlob);
   
@@ -123,12 +121,12 @@ snapshotButton.onclick = function() {
     let response = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4){
       if (xhr.status == 200) {
-        document.getElementById("probability").innerHTML = '<b>Probability</b>';
-        document.getElementById("result1").innerHTML = '<p> <snap style="font-weight:bold;font-size:larger">' + (Number(response.predictions[0].probability).toFixed(2)) + '</snap><br>' + response.predictions[0].tagName.toUpperCase() + '</p>';
-        document.getElementById("result2").innerHTML = '<p> <snap style="font-weight:bold;font-size:larger;color:gray">' + (Number(response.predictions[1].probability).toFixed(2)) + '</snap><br>' + response.predictions[1].tagName.toUpperCase() + '</p>';
-        document.getElementById("result3").innerHTML = '<p> <snap style="font-weight:bold;font-size:larger;color:lightgray">' + (Number(response.predictions[2].probability).toFixed(2)) + '</snap><br>' + response.predictions[2].tagName.toUpperCase() + '</p>';
-        document.getElementById("result4").innerHTML = '<p> <snap style="font-weight:bold;font-size:larger;color:lightgray">' + (Number(response.predictions[3].probability).toFixed(2)) + '</snap><br>' + response.predictions[3].tagName.toUpperCase() + '</p>';
-        document.getElementById("result5").innerHTML = '<p> <snap style="font-weight:bold;font-size:larger;color:lightgray">' + (Number(response.predictions[4].probability).toFixed(2)) + '</snap><br>' + response.predictions[4].tagName.toUpperCase() + '</p>';
+        document.getElementById("probability").innerHTML = '<b>Color - Probability</b>';
+        document.getElementById("result1").innerHTML = '<p> <snap style="font-weight:bold;font-size:1.5em">' + (Number(response.predictions[0].probability).toFixed(2) * 100) + "%" + '</snap><br>' + response.predictions[0].tagName.toUpperCase() + '</p>';
+        document.getElementById("result2").innerHTML = '<p> <snap style="font-weight:bold;font-size:1.5em;color:gray">' + (Number(response.predictions[1].probability).toFixed(2) * 100) + "%" + '</snap><br>' + response.predictions[1].tagName.toUpperCase() + '</p>';
+        document.getElementById("result3").innerHTML = '<p> <snap style="font-weight:bold;font-size:smaller;color:gray">' + (Number(response.predictions[2].probability).toFixed(2) * 100) + "%" + '</snap><br><snap style="font-weight:normal;font-size:smaller;color:gray">' + response.predictions[2].tagName.toUpperCase() + '</snap></p>';
+        document.getElementById("result4").innerHTML = '<p> <snap style="font-weight:bold;font-size:smaller;color:gray">' + (Number(response.predictions[3].probability).toFixed(2) * 100) + "%" + '</snap><br><snap style="font-weight:normal;font-size:smaller;color:gray">' + response.predictions[3].tagName.toUpperCase() + '</snap></p>';
+        document.getElementById("result5").innerHTML = '<p> <snap style="font-weight:bold;font-size:smaller;color:gray">' + (Number(response.predictions[4].probability).toFixed(2) * 100) + "%" + '</snap><br><snap style="font-weight:normal;font-size:smaller;color:gray">' + response.predictions[4].tagName.toUpperCase() + '</snap></p>';
       } else {
         document.getElementById("probability").innerHTML = "<b>Error</b>";
         document.getElementById("result1").innerHTML = '';
